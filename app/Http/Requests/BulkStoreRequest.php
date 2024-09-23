@@ -12,7 +12,9 @@ class BulkStoreRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        $user = Auth::user();
+
+        return $user !== null && $user->tokenCan('invoice:create');
     }
 
     /**
